@@ -14,26 +14,29 @@ def under_dev():
     msgbx.showinfo(message='This feature is still in development', title='Sorry')
 
 #Asks for csv file name/location and updates the library
-def update_csv():
+def update_csv(library):
     csv_filename = fd.askopenfilename()
-    bg.update_database(csv_filename)
+    bg.update_database(csv_filename, library)
 
 #Allows user to enter information on new or updated game(s) and then updates the library
-def update_entry():
+def update_entry(library):
+    under_dev()
 
 #Allows user to generate lists of Titles from the library and display or save to a file
-def mk_list():
+def mk_list(library):
+    under_dev()
 
 #Selects and displays a random Title from the library
-def random():
+def random(data):
     game = bg.random_choice(data)
     msgbx.showinfo(message=game)
 
 #Opens a display to allow for options to filter the library before running random
-def adv_random():
+def adv_random(library):
+    under_dev()
 
 #Ask for csv file destination/name and saves the current library there
-def export():
+def export(library):
     exportfile = fd.asksaveasfilename()
     library.to_csv(exportfile, index=False)
 

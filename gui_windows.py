@@ -15,7 +15,7 @@ def Under_dev():
     window_dev.mainloop()
 
 #Home display window
-def Home():
+def Home(library):
     window_home = tk.Tk()
     window_home.title("My Board Game Library")
 
@@ -45,23 +45,23 @@ def Home():
     #Fill in the update frame with buttons to allow updating the library
     update_lbl = tk.Label(master=update, text="Update My Library")
     update_lbl.pack(fill=tk.BOTH)
-    btn_csv = tk.Button(master=update, text="From csv", command=btn.update_csv)
+    btn_csv = tk.Button(master=update, text="From csv", command=btn.update_csv(libary))
     btn_csv.pack()
-    btn_entry = tk.Button(master=update, text="Entry", command=btn.update_entry)
+    btn_entry = tk.Button(master=update, text="Entry", command=btn.update_entry(library))
     btn_entry.pack()
 
     #Put Button to get to list options in the mk_list frame
-    btn_list = tk.Button(master=mk_list, text="Make a List", command=btn.mk_list)
+    btn_list = tk.Button(master=mk_list, text="Make a List", command=btn.mk_list(library))
     btn_list.pack()
 
     #Place random selection and advanced selection buttons in random frame
-    btn_choose = tk.Button(master=random, text="What should I play?", command=btn.random)
+    btn_choose = tk.Button(master=random, text="What should I play?", command=btn.random(library))
     btn_choose.pack()
-    btn_adv = tk.Button(master=random, text="Advanced", command=btn.adv_random)
+    btn_adv = tk.Button(master=random, text="Advanced", command=btn.adv_random(library))
     btn_adv.pack()
 
     #Put a button to export library to csv file in export frame
-    btn_export = tk.Button(master=export, text="Export Library to csv", command=btn.export)
+    btn_export = tk.Button(master=export, text="Export Library to csv", command=btn.export(library))
     btn_export.pack()
 
     window_home.mainloop()
@@ -71,17 +71,20 @@ def add_entry():
     window_entry = tk.TK()
     window_entry.title("My Board Game Library Entry")
 
-    
+    window_entry.mainloop()
+
 # Window for filter selections for lists
 def list_filter():
     window_list = tk.TK()
     window_list.title("Make Board Game List")
+
+    window_list.mainloop()
 
 #Window for advanced game randomizer
 def adv_select():
     window_adv = tk.TK()
     window_adv.title("Advanced Game Suggester")
 
-
+    window_adv.mainloop()
 
 
