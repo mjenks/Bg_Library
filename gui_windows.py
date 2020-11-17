@@ -17,10 +17,15 @@ def Under_dev():
 #Home display window
 def Home():
     window_home = tk.Tk()
+    window_home.title("My Board Game Library")
 
     #Make a frame for the title
     header = tk.Frame(master=window_home)
     header.pack(fill=tk.BOTH)
+
+    #Make title
+    main_lbl = tk.Label(master=header, text="My Board Game Library")
+    main_lbl.pack(fill=tk.BOTH)
 
     #Make a frame to hold the features
     body = tk.Frame(master=window_home)
@@ -60,6 +65,23 @@ def Home():
     btn_export.pack()
 
     window_home.mainloop()
+
+# Window to allow user to enter information for a new entry to the library
+def add_entry():
+    window_entry = tk.TK()
+    window_entry.title("My Board Game Library Entry")
+
+    
+# Window for filter selections for lists
+def list_filter():
+    window_list = tk.TK()
+    window_list.title("Make Board Game List")
+
+#Window for advanced game randomizer
+def adv_select():
+    window_adv = tk.TK()
+    window_adv.title("Advanced Game Suggester")
+
 
 
 
