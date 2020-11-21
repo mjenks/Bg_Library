@@ -5,12 +5,13 @@ import pandas as pd
 
 
 # reads in csv file and creates or updates the main data frame
-def update_database(fname,df='None'):
+def update_database(fname,df):
     new = pd.read_csv(fname)
-    if df='None':
-        df = new
+    if df.empty:
+        data = new
     else:
-        df = df.append(new).drop_duplicates(subset=['Title'], keep='last')
+        data = df.append(new).drop_duplicates(subset=['Title'], keep='last')
+    return data
 
 # returns a Series of Titles that meet given criteria
 def list_titles(df, cond):
@@ -18,11 +19,11 @@ def list_titles(df, cond):
     return pd.Series(list['Title'].values)
 
 # returns a random Title from given series or dataframe
-def random_choice(data)
+def random_choice(data):
     if isinstance(data, pd.DataFrame):
         titles = pd.Series(data['Title'].values)
     else:
         titles = data
     rand = titles.sample()
-    return rand[1]
+    return rand
 
