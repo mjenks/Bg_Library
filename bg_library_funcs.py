@@ -8,11 +8,14 @@ import pandas as pd
 class bg_library(pd.DataFrame):
     
     def __init__(self):
+        super().__init__()
         self.libraryfile = "bg_library.csv"
         try:
             self.df = pd.read_csv(self.libraryfile)
         except:
-            self.df = pd.DataFrame()
+            Fields = ["Title", "Minimum Players", "Maximum Players"]
+            self.df = pd.DataFrame(columns = Fields)
+        
 
 # reads in csv file and creates or updates the main data frame
     def update(self, fname):
@@ -37,7 +40,8 @@ class bg_library(pd.DataFrame):
         rand = titles.sample()
         return rand
     
-    def add_game(self, entry):
+    def add_game(self, new):
+        entry = pd.DataFrame(new, columns=self.df.columns)
         self.df = self.df.append(entry, ignore_index=True)
 
 # saves the library

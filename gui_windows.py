@@ -46,10 +46,10 @@ class Home(tk.Frame):
             
     def update_csv(self):
         csv_filename = fd.askopenfilename()
-        self.df.update_database(csv_filename)
+        self.df.update(csv_filename)
             
     def update_entry(self):
-        self.under_dev()
+        Entry_window = New_Entry_window(self.master, self.df)
             
     def mk_list(self):
         self.under_dev()
@@ -98,23 +98,25 @@ class Home(tk.Frame):
 # Window to allow user to enter information for a new entry to the library
 class New_Entry_window(tk.Toplevel):
     
-    def __init__(self, master=None, df):
+    def __init__(self, master, df):
         self.master = master
         self.df = df
         
         super().__init__(master)
         
+        self.columns = list(self.df.columns)
         self.title("New Entry")
         self.Entry_Frame()
         
     #button function for adding new entry to library
     def add_entry(self):
-        #read in values from all entry fields
-        
-        
-        #make a pandas dataframe from entries
-        entry = {'Title' : title, 'Min Players': Min_player, 'Max Players': Max_player}
-        new = pd.DataFrame(data=entry)
+        #read in values from all entry fields and store
+        new = []
+        j = 0
+        for field in self.columns:
+            entry = self.entries[j].get()
+            new.append(entry)
+            j += 1  
         
         #update the library
         self.df.add_game(new)
@@ -122,11 +124,22 @@ class New_Entry_window(tk.Toplevel):
         
     def Entry_Frame(self):
         # Labels and Entry Windows for Library data fields
-        
+        self.labels = {}
+        self.entries = {}
+        i = 0
+        for field in self.columns:
+            self.labels[i] = tk.Label(master=self, text=field)
+            self.entries[i] = tk.Entry(master=self)
+            self.labels[i].grid(row=i,column=0)
+            self.entries[i].grid(row=i,column=1)
+            i += 1
         #Add entry Button
+        self.add_btn = tk.Button(master = self, text = "Add", command=self.add_entry)
+        self.add_btn.grid(row=i,column=0)
         
         #Done/Quit button
-        
+        self.done_btn = tk.Button(master = self, text = "Done", command=self.destroy)
+        self.done_btn.grid(row=i, column=1)
 
 
 
